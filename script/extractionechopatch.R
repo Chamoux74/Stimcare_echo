@@ -12,7 +12,7 @@ library(pracma)
 
 echopatch <-
   list.files(
-    path = "C:/Users/maxch/Nextcloud/Data_STIMCARE/ECHO/data/PATCH",
+    path = "Data/PATCH",
     pattern = "\\.csv",
     all.files = TRUE,
     full.names = TRUE
@@ -109,7 +109,7 @@ which(echopatchoclu$PierreEmmanuelleNaulletPOSTAOCLU$diameterinstant == 6.399)
 #calcule FMD
 #chargement du fichier avec les numéros de ligne
 
-linenumberspatch <- read.csv("C:/Users/maxch/Nextcloud/Data_STIMCARE/ECHO/data/linenumberspatch.csv")
+linenumberspatch <- read.csv("Data/linenumberspatch.csv")
 linenumberspatch <- column_to_rownames(linenumberspatch , var = "nom")
 
 #extraction du diamètre pic en fonction de l'index de la ligne selectionné

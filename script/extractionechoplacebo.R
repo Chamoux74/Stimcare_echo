@@ -1,6 +1,6 @@
 echoplacebo <-
   list.files(
-    path = "C:/Users/maxch/Nextcloud/Data_STIMCARE/ECHO/data/PLACEBO",
+    path = "Data/PLACEBO",
     pattern = "\\.csv",
     all.files = TRUE,
     full.names = TRUE
@@ -64,7 +64,7 @@ which(echoplacebooclu$GaetanSteenbergenPOSTAOCLU$diameterinstant == 6.147)
 #calcule FMD
 #chargement du fichier avec les numéros de ligne
 
-linenumbersplacebo <- read.csv("C:/Users/maxch/Nextcloud/Data_STIMCARE/ECHO/data/linenumbersplacebo.csv")
+linenumbersplacebo <- read.csv("Data/linenumbersplacebo.csv")
 linenumbersplacebo <- column_to_rownames(linenumbersplacebo , var = "nom")
 
 #extraction du diamètre pic en fonction de l'index de la ligne selectionné

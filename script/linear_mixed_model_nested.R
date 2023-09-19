@@ -189,7 +189,7 @@ r.squaredLR(modelemixte3) # ok for all, with adjusted r squared which is more pr
 
 contrasts(test_clean3$instant)
 
-contr.instant(3, base = 1, contrasts = TRUE, sparse = FALSE)
+#contr.instant(3, base = 1, contrasts = TRUE, sparse = FALSE)
 
 #interaction test
 

@@ -1,3 +1,5 @@
+library(sjPlot)
+
 # plot to investigated crossed fixed and random effect in repeated measures
 interaction.plot(test_clean3$condition, test_clean3$sujet, test_clean3$FMD, las=1,
                  trace.label="identifiant du sujet", xlab="Traitement", ylab="Flux médié par dilatation (sqrt transform)")
@@ -39,6 +41,8 @@ anova(modelemixte3_1, modelemixte3_2)
 #no differences, with spécifics covariance model
 
 #plot linear model
+
+plot_model(modelemixte3, show.values = T, width = 0.1)
 
 newdat <- expand.grid(condition=unique(test_clean3$condition),
                       instant=c(min(as.numeric(test_clean3$instant)),
