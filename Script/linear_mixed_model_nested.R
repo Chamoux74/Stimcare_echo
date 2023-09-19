@@ -110,6 +110,7 @@ ggplot(test_clean, aes(sample=residus))+stat_qq()
 
 #not normally distributed -> log tansformation
 test_clean3 <- test_clean
+test_clean3$instant <- factor(test_clean3$instant, levels = c("BASEPRE", "FROIDPRE","BASEPOST48"))
 
 test_clean3$FMD <- sqrt(test_clean$FMD)
 
