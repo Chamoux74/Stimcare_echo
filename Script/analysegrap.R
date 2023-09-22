@@ -1,13 +1,16 @@
 dfechobase <- rbind(dfmeanbasepatch, dfmeanbaseplacebo)
 
+dfechobase$condition <- factor(dfechobase$condition, levels = c("placebo", "patch"))
+dfechobase$timing <- factor(dfechobase$timing, levels = c("PRE", "POST", "POST48"))
+
 dfechobase %>% filter(
   grepl("PRE" , timing)) %>% group_by(condition) %>% shapiro_test(meandiameter)
 
 dfechobase %>% filter(
   grepl("PRE" , timing)) %>% group_by(condition) %>% identify_outliers(meandiameter)
 
-dfechobase %>% filter(
-  grepl("PRE" , timing)) %>% ggplot(aes(x = condition , y = meandiameter)) +
+plot <-dfechobase %>% filter(
+  grepl("BASE" , test_type)) %>% ggplot(aes(x = condition , y = meandiameter)) +
   geom_point(aes(color = sujet))+
     geom_boxplot(alpha = 0.3) +
   geom_line(
@@ -28,7 +31,9 @@ dfechobase %>% filter(
     ) +
     stat_compare_means(method = "t.test" , paired = TRUE
     ) +
-  facet_grid(cols = vars(test_type))
+  facet_grid(cols = vars(timing))
+
+
 
 dfechofmd <- rbind(dfpatch, dfplacebo)
 

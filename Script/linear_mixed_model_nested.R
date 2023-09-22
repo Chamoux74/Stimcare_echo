@@ -10,6 +10,8 @@ library(performance)
 library(MuMIn)
 library(phia)
 library(emmeans)
+library(robustlmm)
+library(sjPlot)
 
 
 dfechofmd$condition <- factor(dfechofmd$condition, levels = c("placebo", "patch"))
@@ -25,6 +27,8 @@ summary(modelemixte)
 
 modelemixte1 <- lme(FMD ~ condition*instant, data= test, random=~1|sujet, method = "REML", na.action = na.omit)
 
+modelemixte_rob <- rlmer(meandiameter ~ condition*instant + (1|sujet/condition), data = test, REML = F)
+tab_model(modelemixte_rob)
 
 #description data
 
@@ -205,7 +209,7 @@ testInteractions(modelemixte3, pairwise = "condition", fixed = "instant")
 #second method to calculate interraction contrast
 
 emm_options(lmer.df = "satterthwaite")
-emmeans_out <- emmeans(modelemixte3, ~instant*condition, weights = "show.levels")
+emmeans_out <- emmeans(modelemixte_rob, ~instant*condition, weights = "show.levels")
 emmeans_out
 plot(emmeans_out)
 pair1 <- pairs(emmeans_out, adjust ="holm")
